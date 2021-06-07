@@ -23,11 +23,41 @@ class WrapperModel(nn.Module):
         out = self.model(*input, **kwargs)
         return out.logits
 
-class Visualizer():
+class InterpretableSentimentClassifier():
     """Uses Integrated Gradients to compute attributions for a sentiment classification"""
     def __init__(self):
         # accumalate couple samples in this array for visualization purposes
         self.vis_data_records_ig = []
+
+    def classify_sentiment(self, model, sentence, tokenizer, min_len=32):
+        """Uses model to predict the sentiment of a sentence, then uses Integrated Gradients to compute attributions
+            INPUTS:
+            model: sentiment classification model
+            sentence (str): sentence to classify the sentiment of
+            tokenizer: tokenizer associated with our model to convert the sentence into tokens
+            min_len: the length to pad our sentence to
+
+        """
+        model = WrapperModel(model)
+        PAD_IND = tokenizer.pad_token_id
+        indexed = tokenizer([sentence],
+                                padding="max_length",
+                                truncation=True,
+                                max_length=32,
+                                return_tensors="pt")
+        text = tokenizer.convert_ids_to_tokens(indexed['input_ids'][0])
+
+        if len(text) < min_len:
+            text += ['pad'] * (min_len - len(text))
+
+        model.zero_grad()
+
+
+        # predict
+        preds = F.softmax(model(**indexed), dim=-1)
+        pred_ind = torch.argmax(preds.squeeze()).item()
+        pred = torch.max(preds)
+        return pred, LABEL_MAP[pred_ind], pred_ind
 
     def interpret_sentence(self, model, sentence, tokenizer, min_len = 32):
         """Uses model to predict the sentiment of a sentence, then uses Integrated Gradients to compute attributions
