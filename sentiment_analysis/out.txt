@@ -1,4 +1,4 @@
-Can't you name a lower price? Can't you name a lower price? That is a terrible price  SENTIMENT: NEGATIVE SCORE 0.8848224878311157 TOPIC: price 
-Can't you name a lower price? Can't you name a lower price? That is a terrible price  SENTIMENT: NEGATIVE SCORE 0.8848224878311157 TOPIC: item 
- SENTIMENT: NEUTRAL SCORE 0.4512723684310913 TOPIC: delivery date 
+That is a terrible score That is a terrible score  SENTIMENT: NEGATIVE SCORE 0.9597634673118591 TOPIC: item 
  SENTIMENT: NEUTRAL SCORE 0.4512723684310913 TOPIC: quantity 
+ SENTIMENT: NEUTRAL SCORE 0.4512723684310913 TOPIC: price 
+ SENTIMENT: NEUTRAL SCORE 0.4512723684310913 TOPIC: delivery date 
