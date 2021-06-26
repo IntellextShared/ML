@@ -38,8 +38,8 @@ class Message:
             topic.printTopic()
     
     def writeMessage(self):
-        fullMessage = self.Content
+        fullMessage = self.Content + "\n"
         for topic in self.Topics:
-            fullMessage += topic.getTopic()
+            fullMessage += "\n" + topic.getTopic()
         return fullMessage
         
