@@ -1,6 +1,7 @@
 from message import Message
 import uuid
 
+
 class User:
     counter = 0
 
@@ -16,7 +17,7 @@ class User:
 
     def getUsername(self):
         return self.Name
-    
+
     def getUserID(self):
         return self.UserId
 
@@ -25,7 +26,7 @@ class User:
 
     def getMessages(self):
         return self.Messages
-    
+
     def printUser(self):
         print("Name: " + self.Name)
         print("UUID:", self.UserId, "\n")

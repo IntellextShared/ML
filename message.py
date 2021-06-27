@@ -3,12 +3,13 @@ class SentimentTopic:
         self.Topic = topic
         self.Sentiment = sentiment
         self.Score = score
-    
+
     def printTopic(self):
         print(self.Topic + "\n" + self.Sentiment + "\n" + self.Score + "\n")
-    
+
     def getTopic(self):
         return self.Topic + "\n" + self.Sentiment + "\n" + self.Score + "\n"
+
 
 class Message:
 
@@ -32,14 +33,13 @@ class Message:
             SCORE = topic[sentimentEnd:]
 
             self.Topics.append(SentimentTopic(TOPIC, SENTIMENT, SCORE))
-    
+
     def printMessage(self):
         for topic in self.Topics:
             topic.printTopic()
-    
+
     def writeMessage(self):
         fullMessage = self.Content + "\n"
         for topic in self.Topics:
             fullMessage += "\n" + topic.getTopic()
         return fullMessage
-        

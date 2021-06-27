@@ -3,6 +3,7 @@ import uuid
 from user import User
 from message import Message
 
+
 class LocalStorageDB:
 
     def __init__(self):
@@ -32,45 +33,52 @@ class LocalStorageDB:
             return print("Err user already exists")
         except KeyError:
             self.users.append(User(NewUser))
-            self.userFiles[NewUser] = [self.initUserFile(self.users[len(self.users) - 1]), NewUser, 0]
+            self.userFiles[NewUser] = [self.initUserFile(
+                self.users[len(self.users) - 1]), NewUser, 0]
 
     # Returns location of user's directory
     def initUserFile(self, user):
         userDirectory = user.getUsername() + str(user.getUserID())[4:8]
         try:
-            os.mkdir(os.path.join(os.getcwd(), "LocalStorageDB/Users/" + userDirectory))
+            os.mkdir(os.path.join(
+                os.getcwd(), "LocalStorageDB/Users/" + userDirectory))
         except FileExistsError:
             return print("User already exists and already has a directory initialized")
 
-        UserFileInit = open("./LocalStorageDB/Users/" + userDirectory + "/" + user.getUsername() + ".txt", "w+") 
-        UserFileInit.write(user.getUsername() + "\n" + str(user.getUserID()) + "\n")
+        UserFileInit = open("./LocalStorageDB/Users/" +
+                            userDirectory + "/" + user.getUsername() + ".txt", "w+")
+        UserFileInit.write(user.getUsername() + "\n" +
+                           str(user.getUserID()) + "\n")
 
         try:
-            os.mkdir(os.path.join(os.getcwd(), "LocalStorageDB/Users/" + userDirectory + "/messages"))
+            os.mkdir(os.path.join(
+                os.getcwd(), "LocalStorageDB/Users/" + userDirectory + "/messages"))
         except FileExistsError:
             return print("Error attempting to create directory for message storage")
-        
+
         return os.getcwd() + "\LocalStorageDB\\Users\\" + userDirectory
 
     def writeMessage(self, user, message):
         try:
             userValue = self.userFiles[user]
-            fileLocation = userValue[0] + "\messages\\" + userValue[1] + str(userValue[2]) + ".txt"
+            fileLocation = userValue[0] + "\messages\\" + \
+                userValue[1] + str(userValue[2]) + ".txt"
             self.userFiles[user][2] += 1
         except KeyError:
             return print("User does not exist in database")
-        
+
         messageFile = open(fileLocation, "w+")
         messageFile.write(message.writeMessage())
         messageFile.close()
-        messageFile = open("./LocalStorageDB/Messages/" + userValue[1] + str(userValue[2]) + ".txt", "w+")
+        messageFile = open("./LocalStorageDB/Messages/" +
+                           userValue[1] + str(userValue[2]) + ".txt", "w+")
         messageFile.write(message.writeMessage())
         messageFile.close()
-
 
     def printUsers(self):
         for user in self.users:
             user.printUser()
+
 
 myDB = LocalStorageDB()
 myDB.insertUser("a")
