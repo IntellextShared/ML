@@ -43,25 +43,6 @@ def start_onboarding(user_id: str, channel: str):
         onboarding_tutorials_sent[channel] = onboarding_tutorial
 
 
-# ================ Team Join Event =============== #
-# When the user first joins a team, the type of the event will be 'team_join'.
-# Here we'll link the onboarding_message callback to the 'team_join' event.
-@slack_events_adapter.on("team_join")
-def onboarding_message(payload):
-    """Create and send an onboarding welcome message to new users. Save the
-    time stamp of this message so we can update this message in the future.
-    """
-    event = payload.get("event", {})
-
-    # Get the id of the Slack user associated with the incoming event
-    user_id = event.get("user", {}).get("id")
-
-    # Open a DM with the new user.
-    response = slack_web_client.conversations_open(users=user_id)
-    channel = response["channel"]["id"]
-
-    # Post the onboarding message.
-    #start_onboarding(user_id, channel)
 
 # ============== Message Events ============= #
 # When a user sends a DM, the event type will be 'message'.

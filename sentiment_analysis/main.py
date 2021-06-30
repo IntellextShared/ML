@@ -8,8 +8,14 @@ import torch
 import torch.nn as nn
 import numpy as np
 from captum.attr import LayerIntegratedGradients, TokenReferenceBase, visualization
-
 import pickle
+from WikiSplitLaserTagger import bert_example
+from WikiSplitLaserTagger import predict_utils
+from WikiSplitLaserTagger import tagging_converter
+from WikiSplitLaserTagger import utils
+
+import tensorflow as tf
+
 from interpret import InterpretableSentimentClassifier
 LABEL_MAP = {
         0: "NEGATIVE",
@@ -55,8 +61,10 @@ def sort_by_topic(text, topic_labels, topics):
     sorted_text = {topic: "" for topic in topics}
     for i in range(num_sentences):
         for label in topic_labels[i]:
-            sorted_text[label] += text[i] + " "
+            sorted_text[label] += text[i] + "\n"
     return sorted_text
+
+
 
 class SentimentAnalyzer():
     def __init__(self, args):
@@ -69,10 +77,47 @@ class SentimentAnalyzer():
 
         #Initialize zero-shot topic classifier
         self.topic_classifier = pipeline("zero-shot-classification",
-                            model="valhalla/distilbart-mnli-12-9")    
+                            model="valhalla/distilbart-mnli-12-9") 
+
+        self.model_path = "WikiSplitLaserTagger/model/"
+        self.label_map = utils.read_label_map(self.model_path + "label_map.txt")
+        self.vocab_file = self.model_path + "vocab.txt"
+        self.model_ckpt_path = self.model_path + "1624510216"
+        self.converter = tagging_converter.TaggingConverter(
+            tagging_converter.get_phrase_vocabulary_from_label_map(self.label_map),
+            True)
+        self.builder = bert_example.BertExampleBuilder(self.label_map, self.vocab_file,
+                                                128,
+                                                False, self.converter)
+        self.predictor = predict_utils.LaserTaggerPredictor(
+            tf.contrib.predictor.from_saved_model(self.model_ckpt_path), self.builder,
+            self.label_map)   
+
 
     def set_text(self, text):
         self.args.text = text
+
+    def split_sentences(self, text):
+        """Uses LaserTagger model to Split and Rephrase each sentence in the text
+            Inputs:
+            1. text (str) - list of sentences to try to simplify
+            
+            Returns:
+            List of str simple sentences
+        
+        """
+        simple_text = [self.predictor.predict([sentence]) for sentence in text]
+        ret = []
+        delimiter = "<::::>"
+        for sentence in simple_text:
+            split_idx = sentence.find(delimiter)
+            if split_idx != -1: # delimiter was found
+                print("Splitting on delimiter")
+                ret += [sentence[:split_idx], sentence[split_idx + len(delimiter):].capitalize()]
+            else: # sentence was not split
+                ret.append(sentence)
+        return ret
+
 
     def run_analysis(self):
         assert self.args.text_file or self.args.text
@@ -80,6 +125,9 @@ class SentimentAnalyzer():
             text = read_file(self.args.text_file)
         elif self.args.text:
             text = self.args.text
+
+        #Simplify text
+        text = self.split_sentences(text)
 
         #Classify topic of text from command line
         topic_out = self.topic_classifier(text, self.args.topics, multi_label=True)
@@ -101,7 +149,6 @@ class SentimentAnalyzer():
                 else:
                     score, label, _ = self.sentiment_classifier.classify_sentiment(self.model, sentences, self.tokenizer)
                 topic_sentiments[topic] = (label, score, sentences)
-
                 #Output results
                 file.write("{} SENTIMENT: {} SCORE {} TOPIC: {} \n".format(sentences, label, score, topic))
         return topic_sentiments
