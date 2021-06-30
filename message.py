@@ -40,6 +40,6 @@ class Message:
     def writeMessage(self):
         fullMessage = self.Content
         for topic in self.Topics:
-            fullMessage += topic.getTopic()
+            fullMessage += "\n" + topic.getTopic()
         return fullMessage
         

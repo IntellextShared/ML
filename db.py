@@ -67,7 +67,6 @@ class LocalStorageDB:
         messageFile.write(message.writeMessage())
         messageFile.close()
 
-
     def printUsers(self):
         for user in self.users:
             user.printUser()
