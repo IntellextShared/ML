@@ -20,11 +20,14 @@ class MessageBuilder:
         self.reaction_task_completed = False
         self.pin_task_completed = False
         self.last_msg = "start"
+        self.last_msg_sentiments = None
         self.topic_sentiments = {"default": ("default", 1.0)}
         self.userid = 'U024BUC0WAY'
 
     def get_message_payload(self):
-        return {
+        sentiment_block = self._get_msg_block(self.topic_sentiments)
+        self.last_msg_sentiments = sentiment_block[0]["text"]["text"]
+        payload = {
             "ts": self.timestamp,
             "channel": self.channel,
             "username": self.username,
@@ -32,9 +35,11 @@ class MessageBuilder:
             "blocks": [
                 self.WELCOME_BLOCK,
                 self.DIVIDER_BLOCK,
-                *self._get_msg_block(self.topic_sentiments)
+                *sentiment_block
             ],
         }
+        
+        return payload
 
 
     def _get_msg_block(self, topic_sentiments):

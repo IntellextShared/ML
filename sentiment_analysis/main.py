@@ -131,8 +131,9 @@ class SentimentAnalyzer():
 
         #Classify topic of text from command line
         topic_out = self.topic_classifier(text, self.args.topics, multi_label=True)
+        if not isinstance(topic_out, list):# Does not come out as a list if only one piece of text is there.
+            topic_out = [topic_out]
         topics = topic_out[0]["labels"]
-
         topic_labels = [[topic_out[i]["labels"][j] for j in range(len(topics)) if topic_out[i]["scores"][j] > 0.7] for i in range(len(topic_out))]
         
 

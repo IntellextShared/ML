@@ -1,4 +1,1 @@
-Collecting slack_sdk
-  Using cached slack_sdk-3.7.0-py2.py3-none-any.whl (226 kB)
-Installing collected packages: slack-sdk
-Successfully installed slack-sdk-3.7.0
+Requirement already satisfied: slack_sdk in /home/doseokt5/miniconda3/envs/Intellext2/lib/python3.7/site-packages (3.7.0)
