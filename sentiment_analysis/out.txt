@@ -1,0 +1,39 @@
+What did you want included in this purchase order?
+We’re going to need 10.000 of your Model X controllers by July 15.
+Ok, at that quantity, I can quote you $10 per unit . 
+ but i don’t think we can deliver until july 30.
+That’s not going to work. We really need them by the 15th.
+Why so soon? We usually don’t deliver that quickly.
+We had a customer surprise us with an order we didn’t expect. it’s really important that we get them to him on time.
+What if we were willing to pay $11 per unit? Could you bump us up in your priority so we get them sooner?
+I’m not sure that would do it.
+I could go as high as $12 per unit.
+I’d have to check with engineering . 
+ to see if they can meet that date.
+Please do that. I really don’t want to have to find another supplier. We’ve been happy with the Model X.
+Ok, let’s proceed with $12 per unit . 
+ but i will need approval to finalize this deal, ok?
+How soon can you do that?
+Tomorrow?
+That works. Please get back to me then.
+Due to the hurricane , Lobsterfest has been canceled , making Bob very happy about it . 
+ he decides to open bob 's burgers for customers who were planning on going to lobsterfest .
+ SENTIMENT: NEUTRAL SCORE 0.8049113154411316 TOPIC: item 
+Ok, at that quantity, I can quote you $10 per unit . 
+What if we were willing to pay $11 per unit? Could you bump us up in your priority so we get them sooner?
+I could go as high as $12 per unit.
+Ok, let’s proceed with $12 per unit . 
+ SENTIMENT: NEUTRAL SCORE 0.8341440558433533 TOPIC: price 
+We’re going to need 10.000 of your Model X controllers by July 15.
+ but i don’t think we can deliver until july 30.
+That’s not going to work. We really need them by the 15th.
+Why so soon? We usually don’t deliver that quickly.
+What if we were willing to pay $11 per unit? Could you bump us up in your priority so we get them sooner?
+Tomorrow?
+ SENTIMENT: NEGATIVE SCORE 0.7386607527732849 TOPIC: delivery date 
+We’re going to need 10.000 of your Model X controllers by July 15.
+Ok, at that quantity, I can quote you $10 per unit . 
+What if we were willing to pay $11 per unit? Could you bump us up in your priority so we get them sooner?
+I could go as high as $12 per unit.
+Ok, let’s proceed with $12 per unit . 
+ SENTIMENT: NEUTRAL SCORE 0.7355479001998901 TOPIC: quantity 
