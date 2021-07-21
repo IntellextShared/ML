@@ -1,6 +1,44 @@
-great item
- SENTIMENT: POSITIVE SCORE 0.8798127174377441 TOPIC: item 
-terrible quantity
- SENTIMENT: NEGATIVE SCORE 0.9297349452972412 TOPIC: quantity 
- SENTIMENT: NEUTRAL SCORE 0.4512723684310913 TOPIC: delivery date 
- SENTIMENT: NEUTRAL SCORE 0.4512723684310913 TOPIC: price 
+What did you want included in this purchase order?
+We're going to need 10000 of your Model X controllers by July 15
+At that quantity, I can quote you $10 per unit . 
+ we can only deliver 5000 by july 15.
+That price seems a bit high. Why only half by July 15?
+Because we are experiencing some delays . 
+ our suppliers. the x is our best seller.
+That price is definitely too high. When can you deliver the other 5000?
+By July 31. Unless . 
+No, has to be the Model X. I'll ask about our production schedule to see if we can manage the delay, but that price seems high,
+Ok, can you get back to me?
+Alright, we can take 5000 on July 15 and the other 5000 on July 31, but your price has to come down.
+I can offer you a discount to $9 per unit. Will that work?
+Make it $8.50 . 
+ we can close this today.
+I can do that.
+ SENTIMENT: NEGATIVE SCORE 0.19053971767425537 TOPIC: item 
+At that quantity, I can quote you $10 per unit . 
+ we can only deliver 5000 by july 15.
+That price seems a bit high. Why only half by July 15?
+That price is definitely too high. When can you deliver the other 5000?
+No, has to be the Model X. I'll ask about our production schedule to see if we can manage the delay, but that price seems high,
+Alright, we can take 5000 on July 15 and the other 5000 on July 31, but your price has to come down.
+I can offer you a discount to $9 per unit. Will that work?
+Make it $8.50 . 
+ SENTIMENT: NEGATIVE SCORE 0.16433358192443848 TOPIC: price 
+We're going to need 10000 of your Model X controllers by July 15
+ we can only deliver 5000 by july 15.
+That price seems a bit high. Why only half by July 15?
+That price is definitely too high. When can you deliver the other 5000?
+By July 31. Unless . 
+No, has to be the Model X. I'll ask about our production schedule to see if we can manage the delay, but that price seems high,
+Alright, we can take 5000 on July 15 and the other 5000 on July 31, but your price has to come down.
+I can offer you a discount to $9 per unit. Will that work?
+ SENTIMENT: NEGATIVE SCORE 0.16637545824050903 TOPIC: delivery date 
+We're going to need 10000 of your Model X controllers by July 15
+At that quantity, I can quote you $10 per unit . 
+ we can only deliver 5000 by july 15.
+That price is definitely too high. When can you deliver the other 5000?
+By July 31. Unless . 
+Alright, we can take 5000 on July 15 and the other 5000 on July 31, but your price has to come down.
+I can offer you a discount to $9 per unit. Will that work?
+Make it $8.50 . 
+ SENTIMENT: NEGATIVE SCORE 0.13629722595214844 TOPIC: quantity 

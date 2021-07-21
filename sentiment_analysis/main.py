@@ -134,7 +134,7 @@ class SentimentAnalyzer():
         if not isinstance(topic_out, list):# Does not come out as a list if only one piece of text is there.
             topic_out = [topic_out]
         topics = topic_out[0]["labels"]
-        topic_labels = [[topic_out[i]["labels"][j] for j in range(len(topics)) if topic_out[i]["scores"][j] > 0.7] for i in range(len(topic_out))]
+        topic_labels = [[topic_out[i]["labels"][j] for j in range(len(topics)) if topic_out[i]["scores"][j] > 0.5] for i in range(len(topic_out))]
         
 
         sorted_text = sort_by_topic(text, topic_labels, topics)
@@ -148,7 +148,7 @@ class SentimentAnalyzer():
                     print('Visualize attributions based on Integrated Gradients')
                     self.sentiment_classifier.save_visualization(self.args.save_path)
                 else:
-                    score, label, _ = self.sentiment_classifier.classify_sentiment(self.model, sentences, self.tokenizer)
+                    score, label, _ = self.sentiment_classifier.classify_sentiment(self.model, sentences, self.tokenizer, min_len=128)
                 topic_sentiments[topic] = (label, score, sentences)
                 #Output results
                 file.write("{} SENTIMENT: {} SCORE {} TOPIC: {} \n".format(sentences, label, score, topic))

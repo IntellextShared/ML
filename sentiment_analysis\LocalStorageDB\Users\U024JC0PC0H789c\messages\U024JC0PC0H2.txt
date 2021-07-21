@@ -1,0 +1,20 @@
+At that quantity, I can quote you $10 per unit and we can only deliver 5000 by July 15.
+TOPIC: item 
+SENTIMENT: NEUTRAL
+SCORE: 0.14273954927921295 
+
+TOPIC: price 
+SENTIMENT: NEUTRAL
+SCORE: 0.13862022757530212 
+
+TOPIC: delivery date 
+SENTIMENT: NEGATIVE
+SCORE: 0.13869483768939972 
+
+TOPIC: quantity 
+SENTIMENT: NEUTRAL
+SCORE: 0.12390660494565964 
+
+
+
+

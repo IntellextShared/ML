@@ -21,7 +21,9 @@ class WrapperModel(nn.Module):
 
     def forward(self, *input, **kwargs):
         out = self.model(*input, **kwargs)
-        return out.logits
+        temp = out.logits
+        # temp[:, 1] -= torch.mean(temp, dim=1) * 1000
+        return temp
 
 class InterpretableSentimentClassifier():
     """Uses Integrated Gradients to compute attributions for a sentiment classification"""
@@ -43,18 +45,23 @@ class InterpretableSentimentClassifier():
         indexed = tokenizer([sentence],
                                 padding="max_length",
                                 truncation=True,
-                                max_length=32,
+                                max_length=min_len,
                                 return_tensors="pt")
         text = tokenizer.convert_ids_to_tokens(indexed['input_ids'][0])
 
         if len(text) < min_len:
             text += ['pad'] * (min_len - len(text))
+        if len(text) > min_len:
+            text = text[-min_len:]
 
         model.zero_grad()
 
-
+        
         # predict
         preds = F.softmax(model(**indexed), dim=-1)
+        weights = torch.tensor([0.4, 0.2, 0.4]).to(preds.device)
+        preds = preds * weights
+        #assert torch.all(torch.abs(1 - preds.sum(dim = -1)) <= 0.0000001)
         pred_ind = torch.argmax(preds.squeeze()).item()
         pred = torch.max(preds)
         return pred, LABEL_MAP[pred_ind], pred_ind

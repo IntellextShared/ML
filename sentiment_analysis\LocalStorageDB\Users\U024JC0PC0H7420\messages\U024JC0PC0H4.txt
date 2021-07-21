@@ -1,0 +1,20 @@
+Because we are experiencing some delays in our suppliers. The Model X is our best seller.
+TOPIC: item 
+SENTIMENT: NEGATIVE
+SCORE: 0.13152344524860382 
+
+TOPIC: price 
+SENTIMENT: NEGATIVE
+SCORE: 0.1535641998052597 
+
+TOPIC: delivery date 
+SENTIMENT: NEUTRAL
+SCORE: 0.13092027604579926 
+
+TOPIC: quantity 
+SENTIMENT: NEUTRAL
+SCORE: 0.1385459303855896 
+
+
+
+

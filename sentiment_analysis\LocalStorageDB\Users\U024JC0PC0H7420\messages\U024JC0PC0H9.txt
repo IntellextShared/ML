@@ -1,0 +1,20 @@
+Alright, we can take 5000 on July 15 and the other 5000 on July 31, but I need the price reduced.
+TOPIC: item 
+SENTIMENT: NEUTRAL
+SCORE: 0.15622399747371674 
+
+TOPIC: price 
+SENTIMENT: NEGATIVE
+SCORE: 0.16875781118869781 
+
+TOPIC: delivery date 
+SENTIMENT: NEGATIVE
+SCORE: 0.16875781118869781 
+
+TOPIC: quantity 
+SENTIMENT: NEUTRAL
+SCORE: 0.13491477072238922 
+
+
+
+
